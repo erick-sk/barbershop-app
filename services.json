@@ -1,0 +1,54 @@
+{
+  "services": [
+    {
+      "id": 1,
+      "name": "Adult Haircut",
+      "price": 80
+    },
+    {
+      "id": 2,
+      "name": "Boy's Haircut",
+      "price": 60
+    },
+    {
+      "id": 3,
+      "name": "Women's Haircuts",
+      "price": 100
+    },
+    {
+      "id": 4,
+      "name": "Beard Cut",
+      "price": 100
+    },
+    {
+      "id": 5,
+      "name": "Men's Hairstyle",
+      "price": 60
+    },
+    {
+      "id": 6,
+      "name": "Women's Hairstyle",
+      "price": 100
+    },
+    {
+      "id": 7,
+      "name": "Dye",
+      "price": 300
+    },
+    {
+      "id": 8,
+      "name": "Nails",
+      "price": 400
+    },
+    {
+      "id": 9,
+      "name": "Hair washing",
+      "price": 50
+    },
+    {
+      "id": 10,
+      "name": "Hair treatment",
+      "price": 150
+    }
+  ]
+}
