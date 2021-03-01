@@ -23,4 +23,13 @@ body {
   width: 95%;
   margin: 0 auto;
   padding-top: $separation / 2;
+
+  .section {
+    display: none;
+    padding-top: $separation / 2;
+
+    &:first-of-type {
+      display: block;
+    }
+  }
 }
