@@ -1,12 +1,44 @@
+let page = 1;
+
 document.addEventListener("DOMContentLoaded", function () {
   startApp();
 });
 
 function startApp() {
-  ShowServices();
+  // Show Services
+  showServices();
+
+  // Highlights tab pressed
+  showSection();
+
+  // Hides or showa a section tab pressed
+  changeSection();
 }
 
-async function ShowServices() {
+function showSection() {
+  const currentSection = document.querySelector(`#step-${page}`);
+  currentSection.classList.add("show-section");
+}
+
+function changeSection() {
+  const links = document.querySelectorAll(".tabs button");
+
+  links.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      page = parseInt(e.target.dataset.step);
+
+      // Delete show-section from previous section
+      document.querySelector(".show-section").classList.remove("show-section");
+
+      const section = document.querySelector(`#step-${page}`);
+      section.classList.add("show-section");
+    });
+  });
+}
+
+async function showServices() {
   try {
     const result = await fetch("./services.json");
     const db = await result.json();

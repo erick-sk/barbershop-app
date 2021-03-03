@@ -26,10 +26,10 @@ body {
 
   .section {
     display: none;
-    padding-top: $separation / 2;
-
-    &:first-of-type {
-      display: block;
-    }
+    margin-top: $separation / 2;
   }
+}
+
+.show-section {
+  display: block !important;
 }
