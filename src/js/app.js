@@ -18,6 +18,11 @@ function startApp() {
 function showSection() {
   const currentSection = document.querySelector(`#step-${page}`);
   currentSection.classList.add("show-section");
+
+  // Highlight current tab
+
+  const tab = document.querySelector(`[data-step="${page}"]`);
+  tab.classList.add("current");
 }
 
 function changeSection() {
@@ -32,8 +37,16 @@ function changeSection() {
       // Delete show-section from previous section
       document.querySelector(".show-section").classList.remove("show-section");
 
+      // Add show-section where click
       const section = document.querySelector(`#step-${page}`);
       section.classList.add("show-section");
+
+      // Delete current class previous tab
+      document.querySelector(".tabs .current").classList.remove("current");
+
+      // Add current class tab
+      const tab = document.querySelector(`[data-step="${page}"]`);
+      tab.classList.add("current");
     });
   });
 }

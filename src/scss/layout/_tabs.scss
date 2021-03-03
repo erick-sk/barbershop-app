@@ -10,6 +10,11 @@
     border: none;
     border-radius: 5rem;
 
+    &.current {
+      background-color: $blue;
+      color: $white;
+    }
+
     &:hover {
       cursor: pointer;
     }
