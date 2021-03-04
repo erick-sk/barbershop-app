@@ -13,14 +13,33 @@ function startApp() {
 
   // Hides or showa a section tab pressed
   changeSection();
+
+  // Paging back and next
+  nextPage();
+
+  backPage();
+
+  // Checks the current page to hide or show the page layout
+  pagersButtons();
 }
 
 function showSection() {
+  // Delete show-section from previous section
+  const backSection = document.querySelector(".show-section");
+  if (backSection) {
+    backSection.classList.remove("show-section");
+  }
+
   const currentSection = document.querySelector(`#step-${page}`);
   currentSection.classList.add("show-section");
 
-  // Highlight current tab
+  // Delete current class previous tab
+  const backTab = document.querySelector(".tabs .current");
+  if (backTab) {
+    backTab.classList.remove("current");
+  }
 
+  // Highlight current tab
   const tab = document.querySelector(`[data-step="${page}"]`);
   tab.classList.add("current");
 }
@@ -34,19 +53,10 @@ function changeSection() {
 
       page = parseInt(e.target.dataset.step);
 
-      // Delete show-section from previous section
-      document.querySelector(".show-section").classList.remove("show-section");
+      // Call to function showSection();
+      showSection();
 
-      // Add show-section where click
-      const section = document.querySelector(`#step-${page}`);
-      section.classList.add("show-section");
-
-      // Delete current class previous tab
-      document.querySelector(".tabs .current").classList.remove("current");
-
-      // Add current class tab
-      const tab = document.querySelector(`[data-step="${page}"]`);
-      tab.classList.add("current");
+      pagersButtons();
     });
   });
 }
@@ -108,4 +118,41 @@ function selectService(e) {
   } else {
     element.classList.add("selected");
   }
+}
+
+function nextPage() {
+  const nextPage = document.querySelector("#next");
+  nextPage.addEventListener("click", () => {
+    page++;
+    console.log(page);
+
+    pagersButtons();
+  });
+}
+
+function backPage() {
+  const backPage = document.querySelector("#back");
+  backPage.addEventListener("click", () => {
+    page--;
+    console.log(page);
+
+    pagersButtons();
+  });
+}
+
+function pagersButtons() {
+  const nextPage = document.querySelector("#next");
+  const backPage = document.querySelector("#back");
+
+  if (page === 1) {
+    backPage.classList.add("hide");
+  } else if (page === 3) {
+    nextPage.classList.add("hide");
+    backPage.classList.remove("hide");
+  } else {
+    backPage.classList.remove("hide");
+    nextPage.classList.remove("hide");
+  }
+
+  showSection(); // Change section to show page
 }
