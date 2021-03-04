@@ -9,6 +9,7 @@
     text-transform: uppercase;
     border: none;
     border-radius: 5rem;
+    outline: none;
 
     &.current {
       background-color: $blue;

@@ -1,5 +1,12 @@
 let page = 1;
 
+const appointment = {
+  name: "",
+  date: "",
+  time: "",
+  services: [],
+};
+
 document.addEventListener("DOMContentLoaded", function () {
   startApp();
 });
@@ -21,6 +28,9 @@ function startApp() {
 
   // Checks the current page to hide or show the page layout
   pagersButtons();
+
+  // Show quote summary or validation error
+  showSummary();
 }
 
 function showSection() {
@@ -155,4 +165,24 @@ function pagersButtons() {
   }
 
   showSection(); // Change section to show page
+}
+
+function showSummary() {
+  // Destructuring
+  const { name, date, time, services } = appointment;
+
+  // Select Summary
+  const summaryDiv = document.querySelector(".content-summary");
+
+  // Object validation
+
+  if (Object.values(appointment).includes("")) {
+    const noServices = document.createElement("P");
+    noServices.textContent = "Service data are missing, time, date or name";
+
+    noServices.classList.add("invalidate-appointment");
+
+    // Add to summaryDiv
+    summaryDiv.appendChild(noServices);
+  }
 }

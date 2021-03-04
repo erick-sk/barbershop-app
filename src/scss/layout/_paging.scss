@@ -13,6 +13,8 @@
     font-weight: $boldFont;
     text-transform: uppercase;
     font-size: 2rem;
+    border-radius: 2rem;
+    outline: none;
 
     &.hide {
       visibility: hidden;
