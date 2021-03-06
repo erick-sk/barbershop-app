@@ -125,9 +125,35 @@ function selectService(e) {
 
   if (element.classList.contains("selected")) {
     element.classList.remove("selected");
+
+    const id = parseInt(element.dataset.idService);
+
+    deleteService(id);
   } else {
     element.classList.add("selected");
+
+    const serviceObj = {
+      id: parseInt(element.dataset.idService),
+      name: element.firstElementChild.textContent,
+      price: element.firstElementChild.nextElementSibling.textContent,
+    };
+
+    addService(serviceObj);
   }
+}
+
+function deleteService(id) {
+  const { services } = appointment;
+  appointment.services = services.filter((service) => service.id !== id);
+
+  console.log(appointment);
+}
+
+function addService(serviceObj) {
+  const { services } = appointment;
+
+  appointment.services = [...services, serviceObj];
+  console.log(appointment);
 }
 
 function nextPage() {
