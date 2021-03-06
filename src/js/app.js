@@ -34,6 +34,12 @@ function startApp() {
 
   // Stores the name of the date in the object
   nameAppointment();
+
+  // Stores the time of the date in the object
+  dateAppointment();
+
+  // Disable past days
+  disablePreviousDays();
 }
 
 function showSection() {
@@ -259,4 +265,37 @@ function showAlert(message, type) {
   setTimeout(() => {
     alert.remove();
   }, 3000);
+}
+
+function dateAppointment() {
+  const dateInput = document.querySelector("#date");
+  dateInput.addEventListener("input", (e) => {
+    const day = new Date(e.target.value).getUTCDay();
+
+    if ([0, 6].includes(day)) {
+      e.preventDefault();
+      dateInput.value = "";
+      showAlert("Day Close", "error");
+    } else {
+      appointment.date = dateInput.value;
+      console.log(appointment);
+    }
+  });
+}
+
+function disablePreviousDays() {
+  const inputDate = document.querySelector("#date");
+
+  // const dateNow = new Date();
+  // const year = dateNow.getFullYear();
+  // const month = dateNow.getMonth() + 1;
+  // const day = dateNow.getDate() + 1;
+
+  // Format YYYY-MM-DD
+
+  // const dateDisable = `${year}-${month}-${day}`;
+
+  const dateDisable = new Date().toISOString().split("T")[0]; // Solution '2020-3-3' => '2020-03-03'
+
+  inputDate.min = dateDisable;
 }
