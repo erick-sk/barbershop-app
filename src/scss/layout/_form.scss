@@ -19,3 +19,14 @@
     border: none;
   }
 }
+
+.alert {
+  padding: $separation / 2;
+  text-align: center;
+  color: $white;
+  display: block;
+  border-radius: 3rem;
+  &.error {
+    background-color: rgb(194, 0, 0);
+  }
+}

@@ -31,6 +31,9 @@ function startApp() {
 
   // Show quote summary or validation error
   showSummary();
+
+  // Stores the name of the date in the object
+  nameAppointment();
 }
 
 function showSection() {
@@ -211,4 +214,49 @@ function showSummary() {
     // Add to summaryDiv
     summaryDiv.appendChild(noServices);
   }
+}
+
+function nameAppointment() {
+  const nameInput = document.querySelector("#name");
+
+  nameInput.addEventListener("input", (e) => {
+    const nameText = e.target.value.trim();
+
+    // Validate name exist
+    if (nameText === "" || nameText.length < 3) {
+      showAlert("Name no validate", "error");
+    } else {
+      const alert = document.querySelector(".alert");
+      if (alert) {
+        alert.remove();
+      }
+      appointment.name = nameText;
+    }
+  });
+}
+
+function showAlert(message, type) {
+  // If an alert already exists, don't create another one
+  const backAlert = document.querySelector(".alert");
+  if (backAlert) {
+    return;
+  }
+
+  const alert = document.createElement("DIV");
+  alert.textContent = message;
+  alert.classList.add("alert");
+
+  if (type == "error") {
+    alert.classList.add("error");
+  }
+
+  // Insert in HTML
+  const form = document.querySelector(".form");
+  form.appendChild(alert);
+
+  // Delete alert on time 3 seconds
+
+  setTimeout(() => {
+    alert.remove();
+  }, 3000);
 }
