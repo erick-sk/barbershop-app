@@ -35,11 +35,14 @@ function startApp() {
   // Stores the name of the date in the object
   nameAppointment();
 
-  // Stores the time of the date in the object
+  // Stores the date of the date in the object
   dateAppointment();
 
   // Disable past days
   disablePreviousDays();
+
+  // Stores the time of the date in the object
+  timeAppointment();
 }
 
 function showSection() {
@@ -298,4 +301,22 @@ function disablePreviousDays() {
   const dateDisable = new Date().toISOString().split("T")[0]; // Solution '2020-3-3' => '2020-03-03'
 
   inputDate.min = dateDisable;
+}
+
+function timeAppointment() {
+  const inputTime = document.querySelector("#time");
+  inputTime.addEventListener("input", (e) => {
+    const timeAppointment = e.target.value;
+    const time = timeAppointment.split(":");
+
+    if (time[0] < 10 || time[0] > 18) {
+      showAlert("Time fail", "error");
+      setTimeout(() => {
+        inputTime.value = "";
+      }, 2000);
+    } else {
+      appointment.time = timeAppointment;
+      console.log(appointment);
+    }
+  });
 }
