@@ -197,6 +197,8 @@ function pagersButtons() {
   } else if (page === 3) {
     nextPage.classList.add("hide");
     backPage.classList.remove("hide");
+
+    showSummary(); // Page 3, load summary appointment
   } else {
     backPage.classList.remove("hide");
     nextPage.classList.remove("hide");
@@ -212,8 +214,12 @@ function showSummary() {
   // Select Summary
   const summaryDiv = document.querySelector(".content-summary");
 
-  // Object validation
+  // Clean HTML previous
+  while (summaryDiv.firstChild) {
+    summaryDiv.removeChild(summaryDiv.firstChild);
+  }
 
+  // Object validation
   if (Object.values(appointment).includes("")) {
     const noServices = document.createElement("P");
     noServices.textContent = "Service data are missing, time, date or name";
@@ -222,7 +228,56 @@ function showSummary() {
 
     // Add to summaryDiv
     summaryDiv.appendChild(noServices);
+
+    return;
   }
+
+  const headingAppointment = document.createElement("H3");
+  headingAppointment.textContent = "Summary Appointment";
+
+  // Show summary
+  const nameAppointment = document.createElement("P");
+  nameAppointment.innerHTML = `<span>Name:</span> ${name}`;
+
+  const dateAppointment = document.createElement("P");
+  dateAppointment.innerHTML = `<span>Date:</span> ${date}`;
+
+  const timeAppointment = document.createElement("P");
+  timeAppointment.innerHTML = `<span>Time:</span> ${time}`;
+
+  const servicesAppointment = document.createElement("DIV");
+  servicesAppointment.classList.add("summary-services");
+
+  const headingServices = document.createElement("H3");
+  headingServices.textContent = "Details Services";
+
+  servicesAppointment.appendChild(headingServices);
+
+  // Iteration on services array
+  services.forEach((service) => {
+    const { name, price } = service;
+    const containerService = document.createElement("DIV");
+    containerService.classList.add("container-service");
+
+    const textService = document.createElement("P");
+    textService.textContent = name;
+
+    const priceService = document.createElement("P");
+    priceService.textContent = price;
+    priceService.classList.add("price");
+
+    // Insert text and price in DIV
+    containerService.appendChild(textService);
+    containerService.appendChild(priceService);
+
+    servicesAppointment.appendChild(containerService);
+  });
+  summaryDiv.appendChild(headingAppointment);
+  summaryDiv.appendChild(nameAppointment);
+  summaryDiv.appendChild(dateAppointment);
+  summaryDiv.appendChild(timeAppointment);
+
+  summaryDiv.appendChild(servicesAppointment);
 }
 
 function nameAppointment() {

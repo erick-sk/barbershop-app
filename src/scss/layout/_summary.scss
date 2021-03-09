@@ -3,3 +3,31 @@
   margin: $separation / 2 0;
   text-transform: uppercase;
 }
+
+.content-summary {
+  margin-bottom: $separation / 2 0;
+  p {
+    margin-bottom: 0.5rem;
+    span {
+      font-weight: $boldFont;
+      color: $blue;
+      font-size: 2.4rem;
+    }
+  }
+
+  .summary-services {
+    h3 {
+      margin: $separation / 2 0;
+    }
+    .container-service {
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #43453c;
+      .price {
+        font-size: 2.4rem;
+        font-weight: $boldFont;
+        color: $blue;
+      }
+    }
+  }
+}
